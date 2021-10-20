@@ -1,22 +1,49 @@
+package DataAccess;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 
-public class AccountHolderData {
-    String[] bankingReader(){
-        FileReader fr = new FileReader("100 BT Records.csv");
-        BufferedReader csvReader = new BufferedReader(fr);
-        
+public class CSVAccountHolderData implements AccountHolderDataInterface {
+    private HashMap<String, AccountHolder> accountHolders;
 
-        String row = csvReader.readLine();
-        while (row != null) {
-            String[] data = row.split(",");
-
-            row = csvReader.readLine();
+    @Override
+    public AccountHolder getClientbyID(String ID) {
+        if (accountHolders.containsKey(ID)){
+            return accountHolders.get(ID);
         }
-        csvReader.close();
-        fr.close();
-
-        return dat;
+        return null;
     }
+
+    @Override
+    public Collection<AccountHolder> getAllClients() {
+        return accountHolders.values();
+    }
+
+    private void bankingReader() {
+        HashMap accounts = new HashMap();
+
+        // TODO Finish the body of this method.
+        FileReader fr = new FileReader("100_BT_Records.csv");
+        BufferedReader csvReader = new BufferedReader(fr);
+
+        this.accountHolders = accounts;
+    }
+//    String[] bankingReader(){
+//        FileReader fr = new FileReader("100_BT_Records.csv");
+//        BufferedReader csvReader = new BufferedReader(fr);
+//
+//
+//        String row = csvReader.readLine();
+//        while (row != null) {
+//            String[] data = row.split(",");
+//
+//            row = csvReader.readLine();
+//        }
+//        csvReader.close();
+//        fr.close();
+//
+//        return dat;
+//    }
 }

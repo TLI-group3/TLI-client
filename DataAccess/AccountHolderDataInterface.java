@@ -1,15 +1,15 @@
-public interface BankData {
+package DataAccess;
+
+import java.util.Collection;
+
+/**
+ * This is the Data Access Interface for the data of the bank's account holders
+ */
+public interface AccountHolderDataInterface {
     /*
     Get the ID of the client, which is an account holder.
      */
-    String getClientID();
+    AccountHolder getClientbyID(String ID);
 
-    /*
-    Get the group this
-     */
-    String getClientGroup();
-
-    void dataReader();
-
-
+    Collection<AccountHolder> getAllClients();
 }
