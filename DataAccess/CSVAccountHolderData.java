@@ -1,15 +1,17 @@
-package DataAccess;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class CSVAccountHolderData implements AccountHolderDataInterface {
     private HashMap<String, AccountHolder> accountHolders;
 
+    public CSVAccountHolderData() {
+        this.accountHolders = new HashMap();
+    }
+
     @Override
-    public AccountHolder getClientbyID(String ID) {
+    public AccountHolder getClientByID(String ID) {
         if (accountHolders.containsKey(ID)){
             return accountHolders.get(ID);
         }
@@ -21,29 +23,49 @@ public class CSVAccountHolderData implements AccountHolderDataInterface {
         return accountHolders.values();
     }
 
-    private void bankingReader() {
-        HashMap accounts = new HashMap();
-
+    public void bankingReader() {
         // TODO Finish the body of this method.
-        FileReader fr = new FileReader("100_BT_Records.csv");
+        FileReader fr = null;
+        try {
+            fr = new FileReader
+                    ("/Users/annguyen-trinh/OneDrive - University of Toronto/2nd Year/CSC207 Coding Files/Project/100_BT_Records.csv");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader csvReader = new BufferedReader(fr);
 
-        this.accountHolders = accounts;
+        String row = null;
+        try {
+            row = csvReader.readLine();
+            row = csvReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] data = row.split(",");
+
+        try {
+            csvReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AccountHolder account = new AccountHolder("1");
+
+        this.accountHolders.put("1", account);
     }
-//    String[] bankingReader(){
-//        FileReader fr = new FileReader("100_BT_Records.csv");
-//        BufferedReader csvReader = new BufferedReader(fr);
-//
-//
-//        String row = csvReader.readLine();
-//        while (row != null) {
-//            String[] data = row.split(",");
-//
-//            row = csvReader.readLine();
-//        }
-//        csvReader.close();
-//        fr.close();
-//
-//        return dat;
-//    }
+
+    public static void main(String[] args) {
+       CSVAccountHolderData tester = new CSVAccountHolderData();
+       tester.bankingReader();
+       AccountHolder acc = tester.getClientByID("1");
+
+       System.out.println(acc.getName());
+    }
 }
