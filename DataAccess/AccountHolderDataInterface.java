@@ -1,5 +1,3 @@
-package DataAccess;
-
 import java.util.Collection;
 
 /**
@@ -9,7 +7,7 @@ public interface AccountHolderDataInterface {
     /*
     Get the ID of the client, which is an account holder.
      */
-    AccountHolder getClientbyID(String ID);
+    AccountHolder getClientByID(String ID);
 
     Collection<AccountHolder> getAllClients();
 }

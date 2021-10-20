@@ -1,5 +1,3 @@
-package DataAccess;
-
 /**
  * This class represents an account holder at the bank
  */
@@ -9,6 +7,10 @@ class AccountHolder {
     private int creditScore;
     private float savings;
     private float monthlyBudget;
+
+    public AccountHolder(String name){
+        this.name = name;
+    }
 
     void setName(String name) {this.name = name;}
 
