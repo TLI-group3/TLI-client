@@ -14,12 +14,12 @@ export class CarsList extends React.Component {
     }
 
     getCarsList = () => {
-        fetch('http://18.222.134.223/demo', {mode: "no-cors"})
+        fetch('http://localhost:8080/cars')
             // Handle success
             .then(response => response.json())  // convert to json
             .then(
                 json => {
-                    this.setState({carsJSON: json});
+                    this.setState({carsJSON: json.cars});
                 }
             )    //print data to console
             .catch(err => console.log('Request Failed', err)); // Catch errors

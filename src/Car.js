@@ -9,8 +9,8 @@ export class Car extends React.Component {
     render () {
         return (
             <div className="car">
-                <h2>{this.props.JSON.make + " " + this.props.JSON.model}</h2>
-                <p>Price: {this.props.JSON.price}</p>
+                <h2>{this.props.make + " " + this.props.model}</h2>
+                <p>Price: {this.props.price}</p>
             </div>
         );
     }
