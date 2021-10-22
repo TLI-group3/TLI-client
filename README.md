@@ -6,3 +6,6 @@ React Javascript will be used to build the webpage and input UIs, and Spring Boo
 
 # How to Run the Files Locally
 - Type "npm" (without the quotation marks) to activate TLI-Client (the frontend) locally
+
+# Link to Frontend:
+https://main.ds5ehx1xy0t7f.amplifyapp.com/
