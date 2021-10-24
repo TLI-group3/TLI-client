@@ -8,4 +8,4 @@ React Javascript will be used to build the webpage and input UIs, and Spring Boo
 - Type "npm" (without the quotation marks) to activate TLI-Client (the frontend) locally
 
 # Link to Frontend:
-https://main.ds5ehx1xy0t7f.amplifyapp.com/
+https://input-data-new.ds5ehx1xy0t7f.amplifyapp.com/
