@@ -25,7 +25,7 @@ export class CarsList extends React.Component {
     }*/
 
     getCarsList = () => {
-        fetch('http://localhost:8080/cars')
+        fetch('http://3.138.195.107/cars')
             // Handle success
             .then(response => response.json())  // convert to json
             .then(
