@@ -12,11 +12,20 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+// Styling a regular HTML input
+const StyledInput = styled.input`
+  display: block;
+  margin: 20px 0px;
+  border: 1px solid lightblue;
+  text-align: center
+`;
+
 export class CarsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             carsJSON: [],
+          ID: '',
         }
     }
 
@@ -25,7 +34,11 @@ export class CarsList extends React.Component {
     }*/
 
     getCarsList = () => {
-        fetch('http://3.138.195.107/cars')
+      const requestOptions = {
+            method: 'POST',
+            body: this.state.ID
+        };
+        fetch('http://3.138.195.107/cars',requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
             .then(
@@ -35,10 +48,17 @@ export class CarsList extends React.Component {
             )    //print data to console
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
+  handleChange = event => {
+        this.setState({ ID: event.target.value });
+    };
 
     render() {
         return (
             <div>
+                <header className="App-header">
+                    <StyledInput value={this.state.username}
+                                onChange={this.handleChange} placeholder={"INPUT CLIENT ID"}/>
+                <header>Your Client ID is {this.state.ID}</header>
                 <Button onClick={this.getCarsList}> CHECK YOUR RECOMMENDED LIST!!! </Button>
                 <div className="carslist">
                     {this.state.carsJSON.map(entry => {
@@ -52,6 +72,7 @@ export class CarsList extends React.Component {
                         );
                     })}
                 </div>
+                </header>
             </div>
         );
     }
