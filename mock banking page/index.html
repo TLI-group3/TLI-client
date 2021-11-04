@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Summary</title>
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+</head>
+<body>
+<h1>RichGuysBank</h1>
+<ul class="navigation">
+    <li class="active">Accounts</li>
+    <li>Bill Payments</li>
+    <li>Transfers</li>
+</ul>
+<div id="container">
+    <div id="middle-container">
+        <div class="accounts">
+            <h2>Banking</h2>
+            <table>
+                <tr>
+                    <th>Account</th>
+                    <th class="balance">Balance $</th>
+                </tr>
+                <tr>
+                    <td>Basic Chequing - ********4444</td>
+                    <td class="balance">5,000.00</td>
+                </tr>
+                <tr>
+                    <td>Savings - ********5555</td>
+                    <td class="balance">100,000.00</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">Total Banking Balance</td>
+                    <td class="balance">$105,000.00</td>
+                </tr>
+            </table>
+        </div>
+        <div class="accounts">
+            <h2>Borrowing</h2>
+            <table>
+                <tr>
+                    <th>Account</th>
+                    <th class="balance">Balance $</th>
+                </tr>
+                <tr>
+                    <td>Credit Card - ********6666</td>
+                    <td class="balance">0.00</td>
+                </tr>
+                <tr>
+                    <td style="text-align: right">Total Borrowing</td>
+                    <td class="balance">$0.00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="right-container">
+        <div class="note">
+            <p>Messages</p>
+            <ul>
+                <li>Check out our rewards program</li>
+                <li>New statement available</li>
+            </ul>
+        </div>
+        <div class="note">
+            <p>Manage My Accounts</p>
+            <ul>
+                <li>Change address - banking</li>
+                <li>Account settings</li>
+                <li>Manage recordkeeping</li>
+            </ul>
+        </div>
+        <div id="widget-container"></div>
+    </div>
+</div>
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+<!-- Load our React component. -->
+<script src="../src/components/widget/widget.js"></script>
+</body>
+</html>
