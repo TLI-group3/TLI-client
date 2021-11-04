@@ -38,7 +38,7 @@ export class CarsList extends React.Component {
             method: 'POST',
             body: this.state.ID
         };
-        fetch('http://3.138.195.107/cars',requestOptions)
+        fetch('https://cb.caravantage.tech/cars',requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
             .then(
