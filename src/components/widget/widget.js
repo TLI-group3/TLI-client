@@ -1,11 +1,20 @@
 'use strict';
 
+import ReactDOM from "react-dom";
+
 const e = React.createElement;
 
-class LikeButton extends React.Component {
+class Widget extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { liked: false };
+        this.state = { recommendedCarsJSON: true };
+    }
+
+    handleTradeInWidget = () => {
+
+}
+    postTradeIn(){
+
     }
 
     render() {
@@ -22,4 +31,4 @@ class LikeButton extends React.Component {
 }
 
 const domContainer = document.querySelector('#widget-container');
-ReactDOM.render(e(LikeButton), domContainer);
+ReactDOM.render(e(Widget), domContainer);
