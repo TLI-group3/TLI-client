@@ -1,7 +1,5 @@
-import logo from './logo.svg';
-
 import './App.css';
-import {CarsList} from './CarsList';
+import {CarsList} from '../CarsList';
 
 function App() {
   return (
