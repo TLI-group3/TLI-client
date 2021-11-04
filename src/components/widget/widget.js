@@ -13,7 +13,7 @@ class Widget extends React.Component {
     handleTradeInWidget = () => {
 
 }
-    postTradeIn(){
+    postTradeIn = () => {
 
     }
 
