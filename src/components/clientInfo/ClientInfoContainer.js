@@ -1,6 +1,7 @@
 import React from 'react';
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
+import './ClientInfoContainer.scss';
 
 class ClientInfoContainer extends React.Component {
     constructor(props) {
