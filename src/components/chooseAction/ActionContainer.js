@@ -1,6 +1,6 @@
 import React from 'react';
 import ActionButton from "./ActionButton";
-import './ActionContainer.scss';
+import styles from './ActionContainer.module.scss';
 
 class ActionContainer extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class ActionContainer extends React.Component {
 
     render(){
         return (
-            <div className=".action-container">
+            <div className={styles.actionContainer}>
                 Choose An Action
                 <ActionButton
                     path={this.state.launchWidgetPath}

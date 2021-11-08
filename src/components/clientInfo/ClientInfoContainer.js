@@ -1,7 +1,7 @@
 import React from 'react';
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
-import './ClientInfoContainer.scss';
+import styles from './ClientInfoContainer.module.scss';
 
 class ClientInfoContainer extends React.Component {
     constructor(props) {
