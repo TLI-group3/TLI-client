@@ -9,6 +9,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootElement = document.getElementById("root");
+// Serves the different pages depending on the path specified
 render(
     <BrowserRouter>
         <Routes>
