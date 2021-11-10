@@ -7,15 +7,18 @@ import reportWebVitals from './reportWebVitals';
 // Importing the CSS
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {ActionContainer} from "./components/chooseAction/ActionContainer";
 
 const rootElement = document.getElementById("root");
 // Serves the different pages depending on the path specified
 render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="launch-widget" element={<ClientInput />} />
-            <Route path="client-info" element={<ClientInfoContainer />} />
+            <Route path="/" element={<App />} >
+                <Route index element={<ActionContainer/>} />
+                <Route path="launch-widget" element={<ClientInput />} />
+                <Route path="client-info" element={<ClientInfoContainer />} />
+            </Route>
         </Routes>
     </BrowserRouter>,
     rootElement
