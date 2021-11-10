@@ -1,5 +1,4 @@
 import './App.scss';
-import {ActionContainer} from '../components/chooseAction/ActionContainer';
 import {Outlet} from "react-router-dom";
 
 /**
