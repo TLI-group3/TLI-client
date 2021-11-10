@@ -1,25 +1,13 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export default class ActionButton extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    /**
-     * Send the user to the appropriate page based on path
-     */
-    goToPage = () => {
-        console.log("Handle Click")
-    }
-
-    render(){
-        return (
-          <div>
-              <button onClick={this.goToPage}>{this.props.buttonLabel}</button>
-          </div>
-        );
-    }
+export default function ActionButton(props) {
+    return (
+        <div>
+            <Link to={props.path}>{props.buttonLabel}</Link>
+        </div>
+    );
 }
 
 ActionButton.propTypes = {

@@ -2,12 +2,12 @@ import React from 'react';
 import ActionButton from "./ActionButton";
 import styles from './ActionContainer.module.scss';
 
-class ActionContainer extends React.Component {
+export class ActionContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            launchWidgetPath: '',
-            clientViewPath: '',
+            launchWidgetPath: '/launch-widget',
+            clientViewPath: '/client-info',
         }
     }
 

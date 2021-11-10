@@ -1,17 +1,12 @@
 import './App.scss';
-import {CarsList} from '../CarsList';
+import {ActionContainer} from '../components/chooseAction/ActionContainer';
 
-function App() {
+export default function App() {
   return (
-
     <div className="App">
       <header className="App-header">
-          <CarsList />
-
+          <ActionContainer />
       </header>
     </div>
-
   );
 }
-
-export default App;
