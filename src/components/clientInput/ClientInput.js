@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './ClientInput.module.scss';
 
 class ClientInput extends React.Component {
     constructor(props) {

@@ -1,3 +1,4 @@
+import styles from './widget.module.scss';
 'use strict';
 
 const e = React.createElement;
