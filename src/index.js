@@ -18,6 +18,14 @@ render(
                 <Route index element={<ActionContainer/>} />
                 <Route path="launch-widget" element={<ClientInput />} />
                 <Route path="client-info" element={<ClientInfoContainer />} />
+                <Route
+                    path="*"
+                    element={
+                        <main style={{ padding: "1rem" }}>
+                            <p>This page does not exist. Please go back to the home page and try again.</p>
+                        </main>
+                    }
+                />
             </Route>
         </Routes>
     </BrowserRouter>,
