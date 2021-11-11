@@ -13,8 +13,9 @@ export default class ClientInput extends React.Component {
         }
     }
 
-    handleSubmit = () => {
-        console.log("Handle Submit");
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.setState({success: true});
     }
 
     render() {
@@ -28,13 +29,18 @@ export default class ClientInput extends React.Component {
         }
 
         return (
-            <div className={styles.clientInput}>
-                <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <InsertID inputRows={inputRows} placeholderText={placeholderText}/>
-                    {this.props.launchWidget && <LaunchActions/>}
-                    <input className={styles.submitButton} type="submit" value="GO"/>
-                </form>
+            <div>
+                <div className={styles.clientInput}>
+                    <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <InsertID inputRows={inputRows} placeholderText={placeholderText}/>
+                        {this.props.launchWidget && <LaunchActions/>}
+                        <input className={styles.submitButton} type="submit" value="GO"/>
+                    </form>
+                </div>
+                {this.state.success &&
+                <p>Success! Widgets have been launched.</p>
+                }
             </div>
         );
     }

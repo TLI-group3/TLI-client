@@ -5,6 +5,11 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1em;
   font-size: 20px;
+  overflow: hidden;
+}
+
+p {
+  position: absolute;
 }
 
 .textInput {
