@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from "prop-types";
 import styles from "./ClientInput.module.scss";
 
+/**
+ * A function component that contains the shared form input fields when inserting client IDs.
+ */
 export function InsertID(props) {
     return (
         <div>

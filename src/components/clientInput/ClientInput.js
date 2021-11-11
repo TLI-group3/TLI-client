@@ -4,6 +4,14 @@ import styles from './ClientInput.module.scss';
 import {InsertID} from "./InsertID";
 import {LaunchActions} from "./LaunchActions";
 
+/**
+ * A component that handles inputting client IDs.
+ *
+ * This is used when the user wants to launch targeted widgets for clients,
+ * and when the user wants to view the information about a certain client.
+ *
+ * This component is the one that communicates with the back-end.
+ */
 export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
@@ -19,6 +27,7 @@ export default class ClientInput extends React.Component {
     }
 
     render() {
+        // Alter text depending on use case
         let placeholderText, inputRows;
         if (this.props.launchWidget) {
             placeholderText = "Type the ID numbers here, separated by spaces...";
