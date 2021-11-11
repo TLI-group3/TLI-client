@@ -8,19 +8,35 @@ Object {
       <div
         class="actionContainer"
       >
-        Choose An Action
-        <div>
+        <h1>
+          Choose An Action
+        </h1>
+        <div
+          class="buttons"
+        >
           <a
+            class="actionButton"
             href="/launch-widget"
           >
-            Launch Targeted Widgets
+            <p>
+              Launch Targeted Widgets
+            </p>
+            <img
+              alt="Send Email icon"
+              src="send.png"
+            />
           </a>
-        </div>
-        <div>
           <a
+            class="actionButton"
             href="/client-info"
           >
-            View Client Information
+            <p>
+              View Client Information
+            </p>
+            <img
+              alt="Send Email icon"
+              src="profile.png"
+            />
           </a>
         </div>
       </div>
@@ -30,19 +46,35 @@ Object {
     <div
       class="actionContainer"
     >
-      Choose An Action
-      <div>
+      <h1>
+        Choose An Action
+      </h1>
+      <div
+        class="buttons"
+      >
         <a
+          class="actionButton"
           href="/launch-widget"
         >
-          Launch Targeted Widgets
+          <p>
+            Launch Targeted Widgets
+          </p>
+          <img
+            alt="Send Email icon"
+            src="send.png"
+          />
         </a>
-      </div>
-      <div>
         <a
+          class="actionButton"
           href="/client-info"
         >
-          View Client Information
+          <p>
+            View Client Information
+          </p>
+          <img
+            alt="Send Email icon"
+            src="profile.png"
+          />
         </a>
       </div>
     </div>
