@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from './ClientInput.module.scss';
+import {InsertID} from "./InsertID";
+import {LaunchActions} from "./LaunchActions";
 
 export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             clientIDs: "",
-            generateEmail: false,
-            generateWidget: false,
+            launchWidget: true,
             success: false,
         }
     }
@@ -17,18 +18,22 @@ export default class ClientInput extends React.Component {
     }
 
     render() {
+        let placeholderText, inputRows;
+        if (this.state.launchWidget) {
+            placeholderText = "Type the ID numbers here, separated by spaces...";
+            inputRows = "4";
+        } else {
+            placeholderText = "Type the ID number here";
+            inputRows = "1";
+        }
+
         return (
-            <div>
-                <h1>Insert Client IDs</h1>
-                <form>
-                    <input type="text" placeholder="Type the ID numbers here, separated by spaces..."/><br/>
-                    <label htmlFor="clientFile">Or, upload as a .txt file: </label>
-                    <input type="file" name="clientFile" /><br />
-                    <input type="checkbox" name="email" />
-                    <label htmlFor="email">Generate email markup</label><br/>
-                    <input type="checkbox" name="widget" checked/>
-                    <label htmlFor="widget">Launch targeted widgets</label>
-                    <input type="submit" value="Go" />
+            <div className={styles.clientInput}>
+                <h1>Insert Client ID{this.state.launchWidget && "s"}</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <InsertID inputRows={inputRows} placeholderText={placeholderText}/>
+                    {this.state.launchWidget && <LaunchActions/>}
+                    <input className={styles.submitButton} type="submit" value="GO"/>
                 </form>
             </div>
         );
