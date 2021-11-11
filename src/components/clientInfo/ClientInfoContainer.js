@@ -3,7 +3,7 @@ import CarList from "./CarList";
 import CarDetails from "./CarDetails";
 import styles from './ClientInfoContainer.module.scss';
 
-class ClientInfoContainer extends React.Component {
+export default class ClientInfoContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
