@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styles from './ClientInput.module.scss';
 import {InsertID} from "./InsertID";
 import {LaunchActions} from "./LaunchActions";
@@ -8,7 +9,6 @@ export default class ClientInput extends React.Component {
         super(props);
         this.state = {
             clientIDs: "",
-            launchWidget: true,
             success: false,
         }
     }
@@ -19,7 +19,7 @@ export default class ClientInput extends React.Component {
 
     render() {
         let placeholderText, inputRows;
-        if (this.state.launchWidget) {
+        if (this.props.launchWidget) {
             placeholderText = "Type the ID numbers here, separated by spaces...";
             inputRows = "4";
         } else {
@@ -29,13 +29,17 @@ export default class ClientInput extends React.Component {
 
         return (
             <div className={styles.clientInput}>
-                <h1>Insert Client ID{this.state.launchWidget && "s"}</h1>
+                <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <InsertID inputRows={inputRows} placeholderText={placeholderText}/>
-                    {this.state.launchWidget && <LaunchActions/>}
+                    {this.props.launchWidget && <LaunchActions/>}
                     <input className={styles.submitButton} type="submit" value="GO"/>
                 </form>
             </div>
         );
     }
+}
+
+ClientInput.propTypes = {
+    launchWidget: PropTypes.bool,
 }
