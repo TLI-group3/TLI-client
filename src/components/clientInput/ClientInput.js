@@ -16,18 +16,71 @@ export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientIDs: "",
+            inputData: {
+                clientIDs: "",
+                generateEmail: false,
+                generateWidget: true,
+            },
             success: false,
         }
     }
 
     handleInsertID = (e) => {
-        this.setState({clientIDs: e.target.value});
+        this.setState(prevState => ({
+            inputData: {
+                ...prevState.inputData,
+                clientIDs: e.target.value,
+            },
+            success: false,
+        }));
+    }
+
+    handleSelectAction = (e) => {
+        if(e.target.name === "email") {
+            this.setState(prevState => ({
+                inputData: {
+                    ...prevState.inputData,
+                    generateEmail: e.target.checked,
+                },
+                success: false,
+            }));
+        } else if(e.target.name === "widget") {
+            this.setState(prevState => ({
+                inputData: {
+                    ...prevState.inputData,
+                    generateWidget: e.target.checked,
+                },
+                success: false,
+            }));
+        }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({success: true});
+        this.sendRequest();
+        this.reset();
+    }
+
+    sendRequest = () => {
+        const requestOptions = {
+            method: 'PUT',
+            body: this.state.inputData
+        };
+        fetch('https://cb.caravantage.tech/cars',requestOptions)
+            // Handle success
+            .then(response => response.json())  // convert to json
+            .then(() => this.setState({success: true}))
+            .catch(err => console.log('Request Failed', err)); // Catch errors
+    }
+
+    reset = () => {
+        this.setState({
+            inputData: {
+                clientIDs: "",
+                generateEmail: false,
+                generateWidget: true,
+            }
+        });
     }
 
     render() {
@@ -48,11 +101,17 @@ export default class ClientInput extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <InsertID
                             inputRows={inputRows}
-                            value={this.state.clientIDs}
+                            value={this.state.inputData.clientIDs}
                             placeholderText={placeholderText}
                             onChange={this.handleInsertID}
                         />
-                        {this.props.launchWidget && <LaunchActions/>}
+                        {this.props.launchWidget &&
+                            <LaunchActions
+                                generateEmail={this.state.inputData.generateEmail}
+                                generateWidget={this.state.inputData.generateWidget}
+                                onChange={this.handleSelectAction}
+                            />
+                        }
                         <input className={styles.submitButton} type="submit" value="GO"/>
                     </form>
                 </div>
