@@ -21,6 +21,10 @@ export default class ClientInput extends React.Component {
         }
     }
 
+    handleInsertID = (e) => {
+        this.setState({clientIDs: e.target.value});
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.setState({success: true});
@@ -42,7 +46,12 @@ export default class ClientInput extends React.Component {
                 <div className={styles.clientInput}>
                     <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <InsertID inputRows={inputRows} placeholderText={placeholderText}/>
+                        <InsertID
+                            inputRows={inputRows}
+                            value={this.state.clientIDs}
+                            placeholderText={placeholderText}
+                            onChange={this.handleInsertID}
+                        />
                         {this.props.launchWidget && <LaunchActions/>}
                         <input className={styles.submitButton} type="submit" value="GO"/>
                     </form>
