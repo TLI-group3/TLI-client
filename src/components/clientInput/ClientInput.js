@@ -48,7 +48,7 @@ export default class ClientInput extends React.Component {
                     </form>
                 </div>
                 {this.state.success &&
-                <p>Success! Widgets have been launched.</p>
+                <p className={styles.successMessage}>Success! Widgets have been launched.</p>
                 }
             </div>
         );
