@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from './ClientInput.module.scss';
 import {InsertID} from "./InsertID";
 import {LaunchActions} from "./LaunchActions";
+import {InputForm} from "./InputForm";
 
 /**
  * A component that handles inputting client IDs.
@@ -151,23 +152,16 @@ export default class ClientInput extends React.Component {
             <div>
                 <div className={styles.clientInput}>
                     <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
-                    <form onSubmit={this.handleSubmit}>
-                        <InsertID
-                            inputRows={inputRows}
-                            value={this.state.inputData.clientIDs}
-                            placeholderText={placeholderText}
-                            handleInsertID={this.handleInsertID}
-                            readFile={this.readFile}
-                        />
-                        {this.props.launchWidget &&
-                            <LaunchActions
-                                generateEmail={this.state.inputData.generateEmail}
-                                generateWidget={this.state.inputData.generateWidget}
-                                onChange={this.handleSelectAction}
-                            />
-                        }
-                        <input className={styles.submitButton} type="submit" value="GO"/>
-                    </form>
+                    <InputForm
+                        launchWidget={this.props.launchWidget}
+                        inputData={this.state.inputData}
+                        inputRows={inputRows}
+                        placeholderText={placeholderText}
+                        handleInsertID={this.handleInsertID}
+                        readFile={this.readFile}
+                        handleSelectAction={this.handleSelectAction}
+                        handleSubmit={this.handleSubmit}
+                    />
                 </div>
                 {this.printMessage()}
             </div>

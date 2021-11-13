@@ -4,7 +4,7 @@ import {MemoryRouter} from "react-router-dom";
 import ClientInput from "../ClientInput";
 
 describe('ClientInput', () => {
-    test('matches snapshot', () => {
+    test('matches snapshot when launching widget', () => {
         const clientInput = render(
             <MemoryRouter>
                 <ClientInput launchWidget={true} />
@@ -13,7 +13,7 @@ describe('ClientInput', () => {
         expect(clientInput).toMatchSnapshot();
     });
 
-    test('matches snapshot', () => {
+    test('matches snapshot when not launching widget', () => {
         const clientInput = render(
             <MemoryRouter>
                 <ClientInput launchWidget={false} />

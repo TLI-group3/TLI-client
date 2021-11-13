@@ -16,7 +16,7 @@ export function InsertID(props) {
                 onChange={props.handleInsertID}
             /><br/>
             <label htmlFor="clientFile">Or, upload as a .txt file:
-                <input className={styles.fileUpload} type="file" name="clientFile" onChange={props.readFile}/>
+                <input className={styles.fileUpload} type="file" id="clientFile" onChange={props.readFile}/>
             </label>
         </div>
     );
