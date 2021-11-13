@@ -11,12 +11,12 @@ const CustomCard = (props) => {
                     src= {props.src}
                 />
             }
+            hoverable={true}
 
         >
             <Meta
                 title= {props.title}
                 description={props.description}
-                year={props.year}
             />
         </Card>
     );

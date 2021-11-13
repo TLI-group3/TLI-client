@@ -12,9 +12,7 @@ class Carousels extends React.Component {
         let cards = [];
         for (let i = 0; i <= this.props.count; i++) {
             cards.push(<CustomCard key={i} title = {this.props.title[i]}
-                                   description= {this.props.description[i]}
-                                   year= {this.props.year[i]}
-                                   src= {this.props.src[i]}/>);
+                                   description= {this.props.description[i]}/>);
         }
         return cards;
     }
