@@ -1,17 +1,13 @@
 import './App.scss';
-import {CarsList} from '../CarsList';
+import {Outlet} from "react-router-dom";
 
-function App() {
+/**
+ * The root component of our app. Contains the basic layout other pages inherit.
+ */
+export default function App() {
   return (
-
     <div className="App">
-      <header className="App-header">
-          <CarsList />
-
-      </header>
+      <Outlet />
     </div>
-
   );
 }
-
-export default App;

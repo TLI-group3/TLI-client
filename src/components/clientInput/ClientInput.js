@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ClientInput.module.scss';
 
-class ClientInput extends React.Component {
+export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
