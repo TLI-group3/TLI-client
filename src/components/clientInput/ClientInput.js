@@ -31,8 +31,23 @@ export default class ClientInput extends React.Component {
                 ...prevState.inputData,
                 clientIDs: e.target.value,
             },
-            success: false,
         }));
+    }
+
+    readFile = async (e) => {
+        e.preventDefault();
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            const text = (e.target.result);
+            const ids = text.split(/\r?\n/);
+            this.setState(prevState => ({
+                inputData: {
+                    ...prevState.inputData,
+                    clientIDs: ids.join(" "),
+                },
+            }));
+        };
+        reader.readAsText(e.target.files[0]);
     }
 
     handleSelectAction = (e) => {
@@ -42,7 +57,6 @@ export default class ClientInput extends React.Component {
                     ...prevState.inputData,
                     generateEmail: e.target.checked,
                 },
-                success: false,
             }));
         } else if(e.target.name === "widget") {
             this.setState(prevState => ({
@@ -50,7 +64,6 @@ export default class ClientInput extends React.Component {
                     ...prevState.inputData,
                     generateWidget: e.target.checked,
                 },
-                success: false,
             }));
         }
     }
@@ -64,12 +77,13 @@ export default class ClientInput extends React.Component {
     sendRequest = () => {
         const requestOptions = {
             method: 'PUT',
-            body: this.state.inputData
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify(this.state.inputData)
         };
-        fetch('https://cb.caravantage.tech/cars',requestOptions)
+        fetch('http://localhost:8080/input',requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
-            .then(() => this.setState({success: true}))
+            .then(data => this.setState({success: data}))
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
@@ -79,8 +93,16 @@ export default class ClientInput extends React.Component {
                 clientIDs: "",
                 generateEmail: false,
                 generateWidget: true,
-            }
+            },
         });
+    }
+
+    printMessage = () => {
+        if (typeof this.state.success != "boolean") {
+            return <p className={styles.successMessage}>Something went wrong</p>;
+        } else if (this.state.success) {
+            return <p className={styles.successMessage}>Success! Widgets have been launched.</p>;
+        }
     }
 
     render() {
@@ -103,7 +125,8 @@ export default class ClientInput extends React.Component {
                             inputRows={inputRows}
                             value={this.state.inputData.clientIDs}
                             placeholderText={placeholderText}
-                            onChange={this.handleInsertID}
+                            handleInsertID={this.handleInsertID}
+                            readFile={this.readFile}
                         />
                         {this.props.launchWidget &&
                             <LaunchActions
@@ -115,9 +138,7 @@ export default class ClientInput extends React.Component {
                         <input className={styles.submitButton} type="submit" value="GO"/>
                     </form>
                 </div>
-                {this.state.success &&
-                <p className={styles.successMessage}>Success! Widgets have been launched.</p>
-                }
+                {this.printMessage()}
             </div>
         );
     }

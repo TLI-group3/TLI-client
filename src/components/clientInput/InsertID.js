@@ -13,10 +13,10 @@ export function InsertID(props) {
                 rows={props.inputRows}
                 value={props.value}
                 placeholder={props.placeholderText}
-                onChange={props.onChange}
+                onChange={props.handleInsertID}
             /><br/>
             <label htmlFor="clientFile">Or, upload as a .txt file:
-                <input className={styles.fileUpload} type="file" name="clientFile" />
+                <input className={styles.fileUpload} type="file" name="clientFile" onChange={props.readFile}/>
             </label>
         </div>
     );
@@ -26,5 +26,6 @@ InsertID.propTypes = {
     inputRows: PropTypes.string,
     placeholderText: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
+    handleInsertID: PropTypes.func,
+    readFile: PropTypes.func,
 }
