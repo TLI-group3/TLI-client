@@ -25,6 +25,10 @@ export default class ClientInput extends React.Component {
         }
     }
 
+    /**
+     * Saves the inserted client IDs to the state.
+     * @param e triggering event, change in input field
+     */
     handleInsertID = (e) => {
         this.setState(prevState => ({
             inputData: {
@@ -34,9 +38,16 @@ export default class ClientInput extends React.Component {
         }));
     }
 
+    /**
+     * Reads through an uploaded file and formats the data such that
+     * the client ids are separated by spaces.
+     * @param e triggering event, upload of file
+     * @returns {Promise<void>}
+     */
     readFile = async (e) => {
         e.preventDefault();
         const reader = new FileReader();
+        // once the file is read, reformat the content and update state
         reader.onload = async (e) => {
             const text = (e.target.result);
             const ids = text.split(/\r?\n/);
@@ -50,6 +61,11 @@ export default class ClientInput extends React.Component {
         reader.readAsText(e.target.files[0]);
     }
 
+    /**
+     * Update either the generateEmail or generateWidget states to
+     * reflect checkbox state
+     * @param e triggering event, checkbox changed
+     */
     handleSelectAction = (e) => {
         if(e.target.name === "email") {
             this.setState(prevState => ({
@@ -68,25 +84,35 @@ export default class ClientInput extends React.Component {
         }
     }
 
+    /**
+     * When the form is submitted, send a request to back-end and reset fields
+     * @param e
+     */
     handleSubmit = (e) => {
         e.preventDefault();
         this.sendRequest();
         this.reset();
     }
 
+    /**
+     * Sends a PUT request to back-end containing the input data
+     */
     sendRequest = () => {
         const requestOptions = {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify(this.state.inputData)
         };
-        fetch('http://localhost:8080/input',requestOptions)
+        fetch('https://cb.caravantage.tech/input',requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
-            .then(data => this.setState({success: data}))
+            .then(result => this.setState({success: result}))
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
+    /**
+     * Resets the input fields of the form to default state
+     */
     reset = () => {
         this.setState({
             inputData: {
@@ -97,7 +123,12 @@ export default class ClientInput extends React.Component {
         });
     }
 
+    /**
+     * Prints a message upon submission of form, reflecting success or failure
+     * @returns {JSX.Element} message
+     */
     printMessage = () => {
+        // when an error occurs, the response is a json error message, not boolean
         if (typeof this.state.success != "boolean") {
             return <p className={styles.successMessage}>Something went wrong</p>;
         } else if (this.state.success) {
