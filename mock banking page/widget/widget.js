@@ -1,21 +1,12 @@
-import styles from './widget.module.scss';
+//import styles from './widget.module.scss';
 'use strict';
-
-import ReactDOM from "react-dom";
 
 const e = React.createElement;
 
 class Widget extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { recommendedCarsJSON: true };
-    }
-
-    handleTradeInWidget = () => {
-
-}
-    postTradeIn = () => {
-
+        this.state = { recommendedCarsJSON: true, liked: false };
     }
 
     render() {
