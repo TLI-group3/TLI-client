@@ -6,7 +6,7 @@ body {
 }
 
 h1 {
-    font-family: Verdana;
+    font-family: Verdana, serif;
     color: blue;
 }
 
@@ -33,9 +33,9 @@ h1 {
     border: 1px solid lightgrey;
     margin: 20px 10px 20px 10px;
     text-align: left;
-    box-shadow: 0px 2px 7px #7a7a7a;
-    -moz-box-shadow: 0px 2px 7px #7a7a7a;
-    -webkit-box-shadow: 0px 2px 7px #7a7a7a;
+    box-shadow: 0 2px 7px #7a7a7a;
+    -moz-box-shadow: 0 2px 7px #7a7a7a;
+    -webkit-box-shadow: 0 2px 7px #7a7a7a;
     border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -69,10 +69,9 @@ h1 {
 .navigation {
     list-style-type: none;
     margin: 0;
-    padding: 0;
     overflow: hidden;
     background-color: rgb(31, 42, 197);
-    padding-left: 20%;
+    padding: 0 0 0 20%;
 }
 
 .navigation li {
