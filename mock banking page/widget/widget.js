@@ -19,6 +19,12 @@ class Widget extends React.Component {
         this.state = { items: 0, titles:["Exclusive Car Loan Offers!!!", "v", "c", "d", "e"],
             descriptions: ["Don't lose out!!!", "v", "c", "d", "e"]};
     }
+
+    /**
+     * Updates the number of cards shown on the carousel. Used to jump from welcome card
+     * to the full list of cars
+     * @param val int Number of cards shown
+     */
     update = (val) => {
         this.setState({
             items: val

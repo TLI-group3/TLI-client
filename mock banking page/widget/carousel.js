@@ -15,6 +15,12 @@ class Carousels extends React.Component {
         super()
         this.props = props;
     }
+
+    /**
+     * Generates the specified amount of card containers and assignes them their prop values
+     *
+     * @returns {*[]} Cards Array
+     */
     renderItems() {
         let cards = [];
         for (let i = 0; i <= this.props.count; i++) {
@@ -24,6 +30,11 @@ class Carousels extends React.Component {
         }
         return cards;
     }
+
+    /**
+     *  Revises if the Card shown by the Carousel has been updated to the correct one
+     * @param prevProps
+     */
     componentDidUpdate(prevProps) {
         if (this.props.count !== prevProps.count) {
             this.carouselRef.setState({
@@ -33,6 +44,15 @@ class Carousels extends React.Component {
             });
         }
     }
+
+    /**
+     * Revises if the Carousel component should change after the the user slides or clicks
+     * the next arrow to the left or right.
+     *
+     * @param nextProps
+     * @param nextState
+     * @returns {boolean}
+     */
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.count !== nextProps.count) {
             return true;
