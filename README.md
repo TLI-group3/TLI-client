@@ -8,6 +8,7 @@ For demonstration purposes, the ID used is 1402110922112412.
 The mock banking page is designed to be hosted locally, so that it is separated from the context of our bank agent's view. To run it, simply run the `index.html` file under `/mock banking page/` in your browser.
 
 ## How to Run the Bank Agent's View Locally
+- Make sure you have [Node.js](https://nodejs.org/en/download/) and NPM installed
 - Type ```npm start``` to activate TLI-Client (the frontend) locally
 
 ## Running Tests
