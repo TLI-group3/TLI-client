@@ -3,6 +3,13 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import CustomCard from "./carSlides";
 
+/**
+ * A react component Carousel that renders and contains each individual CustomCard from carSlides.
+ *
+ * The user can interact with it through the arrows or by slidling their cursor to obtain the next card.
+ *
+ * It takes as props the values for each card
+ */
 class Carousels extends React.Component {
     constructor(props){
         super()

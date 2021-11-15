@@ -5,7 +5,14 @@ import "antd/dist/antd.css";
 import Carousels from "./carousel";
 
 const e = React.createElement;
-
+/**
+ * A react component Widget that constructs and gives the data to the Carousel class.
+ *
+ * The user can interact with it by it's two buttons, one retrieves the car Slides while the other
+ * resets it's view to the welcom card
+ *
+ * This will be connected to the CarList retriever.
+ */
 class Widget extends React.Component {
     constructor(props) {
         super(props);

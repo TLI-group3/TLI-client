@@ -1,6 +1,9 @@
 import React from "react";
 import { Card } from "antd";
 
+/**
+ * Basic builder/factory for a Custom Card.
+ */
 const { Meta } = Card;
 const CustomCard = (props) => {
     return (
