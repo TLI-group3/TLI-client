@@ -8,9 +8,15 @@ import styles from "./ClientInput.module.scss";
 export function InsertID(props) {
     return (
         <div>
-            <textarea className={styles.textInput} rows={props.inputRows} placeholder={props.placeholderText}/><br/>
+            <textarea
+                className={styles.textInput}
+                rows={props.inputRows}
+                value={props.value}
+                placeholder={props.placeholderText}
+                onChange={props.handleInsertID}
+            /><br/>
             <label htmlFor="clientFile">Or, upload as a .txt file:
-                <input className={styles.fileUpload} type="file" name="clientFile" />
+                <input className={styles.fileUpload} type="file" id="clientFile" onChange={props.readFile}/>
             </label>
         </div>
     );
@@ -19,4 +25,7 @@ export function InsertID(props) {
 InsertID.propTypes = {
     inputRows: PropTypes.string,
     placeholderText: PropTypes.string,
+    value: PropTypes.string,
+    handleInsertID: PropTypes.func,
+    readFile: PropTypes.func,
 }

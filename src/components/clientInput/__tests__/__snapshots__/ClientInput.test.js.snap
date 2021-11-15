@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ClientInput matches snapshot 1`] = `
+exports[`ClientInput matches snapshot when launching widget 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -27,7 +27,7 @@ Object {
                 Or, upload as a .txt file:
                 <input
                   class="fileUpload"
-                  name="clientFile"
+                  id="clientFile"
                   type="file"
                 />
               </label>
@@ -89,7 +89,7 @@ Object {
               Or, upload as a .txt file:
               <input
                 class="fileUpload"
-                name="clientFile"
+                id="clientFile"
                 type="file"
               />
             </label>
@@ -181,7 +181,7 @@ Object {
 }
 `;
 
-exports[`ClientInput matches snapshot 2`] = `
+exports[`ClientInput matches snapshot when not launching widget 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -207,7 +207,7 @@ Object {
                 Or, upload as a .txt file:
                 <input
                   class="fileUpload"
-                  name="clientFile"
+                  id="clientFile"
                   type="file"
                 />
               </label>
@@ -244,7 +244,7 @@ Object {
               Or, upload as a .txt file:
               <input
                 class="fileUpload"
-                name="clientFile"
+                id="clientFile"
                 type="file"
               />
             </label>
