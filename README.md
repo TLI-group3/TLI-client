@@ -9,7 +9,8 @@ The mock banking page is designed to be hosted locally, so that it is separated 
 
 ## How to Run the Bank Agent's View Locally
 - Make sure you have [Node.js](https://nodejs.org/en/download/) and NPM installed
-- Type ```npm start``` to activate TLI-Client (the frontend) locally
+- In the main directory, run `npm install` (for Windows) or `sudo npm install` (for linux/mac). (If there is an error, try deleteing `package-lock.json` and `yarn.lock`)
+- Type `npm start` (Windows) or `sudo npm start` (for linux/mac) to activate TLI-Client (the frontend) locally
 
 ## Running Tests
 - Type `yarn test` into the console to run the test files.
