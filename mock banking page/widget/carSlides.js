@@ -12,6 +12,7 @@ const CustomCard = (props) => {
                 />
             }
             hoverable={true}
+            style={{ width: 300 }}
 
         >
             <Meta

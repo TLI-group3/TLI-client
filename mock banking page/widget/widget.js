@@ -1,74 +1,58 @@
 import React from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import CustomCard from "./carSlides";
+import ReactDOM from "react-dom";
+import "./widget.module.scss";
+import "antd/dist/antd.css";
+import Carousels from "./carousel";
 
-class Carousels extends React.Component {
-    constructor(props){
-        super()
-        this.props = props;
+const e = React.createElement;
+
+class Widget extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { items: 0, titles:["Exclusive Car Loan Offers!!!", "v", "c", "d", "e"],
+            descriptions: ["Don't lose out!!!", "v", "c", "d", "e"]};
     }
-    renderItems() {
-        let cards = [];
-        for (let i = 0; i <= this.props.count; i++) {
-            cards.push(<CustomCard key={i} title = {this.props.title[i]}
-                                   description= {this.props.description[i]}/>);
-        }
-        return cards;
-    }
-    componentDidUpdate(prevProps) {
-        if (this.props.count !== prevProps.count) {
-            this.carouselRef.setState({
-                currentSlide: 0,
-                transform: 0,
-                totalItems: this.props.count
-            });
-        }
-    }
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.count !== nextProps.count) {
-            return true;
-        }
-        return false;
-    }
+    update = (val) => {
+        this.setState({
+            items: val
+        });
+    };
     render() {
         return (
-            <Carousel
-                ref={node => (this.carouselRef = node)}
-                additionalTransfrom={0}
-                arrows
-                centerMode
-                containerClass="container"
-                draggable
-                focusOnSelect={false}
-                keyBoardControl
-                minimumTouchDrag={80}
-                responsive={{
-                    desktop: {
-                        breakpoint: {
-                            max: 1024,
-                            min: 1700
-                        },
-                        items: 2,
-                        paritialVisibilityGutter: 30
-                    },
-                    tablet: {
-                        breakpoint: {
-                            max: 1024,
-                            min: 464
-                        },
-                        items: 2,
-                        paritialVisibilityGutter: 30
-                    }
-                }}
-                showDots={false}
-                sliderClass=""
-                slidesToSlide={2}
-                swipeable
-            >
-                {this.renderItems()}
-            </Carousel>
+            <React.Fragment>
+                <div>
+                    <Carousels
+                        count={this.state.items}
+                        title={this.state.titles}
+                        description={this.state.descriptions}
+                        src={[
+                            "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F603e2e17ca7d53205d3997e2%2FHu-Tao%2F960x0.jpg%3Ffit%3Dscale",
+                            "https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F603e2e17ca7d53205d3997e2%2FHu-Tao%2F960x0.jpg%3Ffit%3Dscale"
+                        ]}
+                        style={{ width: 100 }}
+                    />
+                </div>
+                <div style={{ margin: "10%" }}>
+                    <button
+                        onClick={() => {
+                            this.update(5);
+                        }}
+                    >
+                        Find your Cars!!!
+                    </button>
+                    <button
+                        onClick={() => {
+                            this.update(0);
+                        }}
+                    >
+                        Reset
+                    </button>
+                </div>
+            </React.Fragment>
         );
     }
 }
-export default Carousels;
+
+const domContainer = document.querySelector("#widget-container");
+ReactDOM.render(e(Widget), domContainer);
+
