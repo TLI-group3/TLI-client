@@ -4,6 +4,9 @@ import ListItemCar from "./ListItemCar";
 export default class CarList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            carsJSON: [],
+        }
     }
 
     componentDidMount() {
@@ -13,7 +16,7 @@ export default class CarList extends React.Component {
     getCars = () => {
         const requestOptions = {
             method: 'POST',
-            body: this.state.ID
+            body: "1402110922112412"
         };
         fetch('http://3.138.195.107/cars',requestOptions)
             // Handle success
@@ -29,7 +32,7 @@ export default class CarList extends React.Component {
     render() {
         return (
             <div className="carslist">
-                {this.state.carsJSON.map(entry => {
+                {this.state.carsJSON?.map(entry => {
                     return (
                         <ListItemCar
                             model={entry.year + " " + entry.make + " " + entry.model}

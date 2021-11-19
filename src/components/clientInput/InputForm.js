@@ -13,7 +13,7 @@ export function InputForm(props) {
     const navigate = useNavigate();
 
     return (
-        <form onSubmit={props.launchWidget ? props.handleSubmit : navigate("/"+props.inputData.clientIDs)}>
+        <form onSubmit={props.launchWidget ? props.handleSubmit : navigate("/client-info/"+props.inputData.clientIDs)}>
             <InsertID
                 inputRows={props.inputRows}
                 value={props.inputData.clientIDs}

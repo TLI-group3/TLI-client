@@ -5,12 +5,15 @@ import {useParams} from "react-router-dom";
 
 export default function ClientInfo(props) {
     let params = useParams();
+    const clientName = "Last Name, First Name";
+    const currentCarID = "10001";
+
     return (
         <React.Fragment>
-            {this.state.clientName}
+            {clientName}
             <CarList />
             <CarDetails
-                currentCarID={this.state.currentCarID}
+                currentCarID={currentCarID}
             />
         </React.Fragment>
     );
