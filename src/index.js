@@ -17,7 +17,9 @@ render(
             <Route path="/" element={<App />} >
                 <Route index element={<ActionContainer/>} />
                 <Route path="launch-widget" element={<ClientInput launchWidget={true} />} />
-                <Route path="client-info" element={<ClientInput launchWidget={false} />} />
+                <Route path="client-info" element={<ClientInput launchWidget={false} />}>
+                    <Route path=":clientId" element={<ClientInfoContainer />}/>
+                </Route>
                 <Route
                     path="*"
                     element={
