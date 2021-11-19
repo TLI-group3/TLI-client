@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from './app/App';
 import ClientInfoContainer from './components/clientInfo/ClientInfoContainer';
 import ClientInput from "./components/clientInput/ClientInput";
+import {ActionContainer} from "./components/chooseAction/ActionContainer";
+import ClientInfo from "./components/clientInfo/ClientInfo";
 import reportWebVitals from './reportWebVitals';
 // Importing the CSS
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ActionContainer} from "./components/chooseAction/ActionContainer";
 
 const rootElement = document.getElementById("root");
 // Serves the different pages depending on the path specified
@@ -17,8 +18,9 @@ render(
             <Route path="/" element={<App />} >
                 <Route index element={<ActionContainer/>} />
                 <Route path="launch-widget" element={<ClientInput launchWidget={true} />} />
-                <Route path="client-info" element={<ClientInput launchWidget={false} />}>
-                    <Route path=":clientId" element={<ClientInfoContainer />}/>
+                <Route path="client-info" element={<ClientInfoContainer />}>
+                    <Route index element={<ClientInput launchWidget={false} />}/>
+                    <Route path=":clientId" element={<ClientInfo />}/>
                 </Route>
                 <Route
                     path="*"
