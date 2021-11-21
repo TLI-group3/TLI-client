@@ -2,6 +2,7 @@ import React from 'react';
 import CarList from "./CarList";
 import CarDetails from "./CarDetails";
 import styles from './ClientInfoContainer.module.scss';
+import {Outlet} from "react-router-dom";
 
 export default class ClientInfoContainer extends React.Component {
     constructor(props) {
@@ -16,11 +17,7 @@ export default class ClientInfoContainer extends React.Component {
     render() {
         return (
             <div>
-                {this.state.clientName}
-                <CarList />
-                <CarDetails
-                    currentCarID={this.state.currentCarID}
-                />
+                <Outlet />
             </div>
         );
     }
