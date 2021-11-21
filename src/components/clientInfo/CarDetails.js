@@ -9,12 +9,12 @@ export default class CarDetails extends React.Component {
     render () {
         return (
             <div>
-                Current car: {this.props.currentCarID}
+                Current car: {this.props.currentCar.model}
             </div>
         );
     }
 }
 
 CarDetails.propTypes = {
-    currentCarID: PropTypes.string,
+    currentCar: PropTypes.object,
 }

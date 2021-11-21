@@ -8,7 +8,7 @@ export default class CarList extends React.Component {
         super(props);
         this.state = {
             carsJSON: [],
-            currentCarId: "",
+            currentCar: {},
         }
     }
 
@@ -28,8 +28,8 @@ export default class CarList extends React.Component {
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
-    onClick = (event) => {
-        this.setState({currentCarId: event.currentTarget.key});
+    onClick = (carId) => {
+        this.setState({currentCar: this.state.carsJSON[carId]});
     }
 
     render() {
@@ -39,6 +39,7 @@ export default class CarList extends React.Component {
                     return (
                         <ListItemCar
                             key={index}
+                            id={index}
                             model={entry.year + " " + entry.make + " " + entry.model}
                             price={entry.price}
                             imageURL={entry.image}
@@ -47,7 +48,7 @@ export default class CarList extends React.Component {
                     );
                 })}
                 <CarDetails
-                    currentCarID={this.state.currentCarID}
+                    currentCar={this.state.currentCar}
                 />
             </div>
         );
