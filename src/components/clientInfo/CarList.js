@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItemCar from "./ListItemCar";
+import PropTypes from "prop-types";
 
 export default class CarList extends React.Component {
     constructor(props) {
@@ -44,4 +45,8 @@ export default class CarList extends React.Component {
             </div>
         );
     }
+}
+
+CarList.propTypes = {
+    clientId: PropTypes.string,
 }
