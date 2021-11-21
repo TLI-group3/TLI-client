@@ -9,7 +9,7 @@ export default class CarDetails extends React.Component {
     render () {
         return (
             <div>
-
+                Current car: {this.props.currentCarID}
             </div>
         );
     }
