@@ -8,7 +8,7 @@ export default class CarList extends React.Component {
         super(props);
         this.state = {
             carsJSON: [],
-            currentCar: {},
+            currentCar: null,
         }
     }
 
@@ -40,7 +40,7 @@ export default class CarList extends React.Component {
                         <ListItemCar
                             key={index}
                             id={index}
-                            model={entry.year + " " + entry.make + " " + entry.model}
+                            name={entry.year + " " + entry.make + " " + entry.model}
                             price={entry.price}
                             imageURL={entry.image}
                             onClick={this.onClick}
