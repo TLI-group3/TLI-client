@@ -10,7 +10,7 @@ export default function ClientInfo() {
 
     return (
         <React.Fragment>
-            Client Number: {params.clientId}
+            <h1>Client Number: {params.clientId}</h1>
             <CarList clientId={params.clientId} />
         </React.Fragment>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import ListItemCar from "./ListItemCar";
 import PropTypes from "prop-types";
 import CarDetails from "./CarDetails";
+import styles from "./ClientInfoContainer.module.scss"
 
 /**
  * Manages the client's list of recommended cars
@@ -33,7 +34,7 @@ export default class CarList extends React.Component {
         fetch('https://cb.caravantage.tech/cars',requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
-            .then(json => { this.setState({carsJSON: json.cars}); })
+            .then(json => { this.setState({carsJSON: json.cars, currentCar: json.cars[0]}); })
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
@@ -46,25 +47,31 @@ export default class CarList extends React.Component {
     }
 
     render() {
-        return (
-            <div className="carslist">
-                {this.state.carsJSON?.map((entry, index) => {
-                    return (
-                        <ListItemCar
-                            key={index}
-                            id={index}
-                            name={entry.year + " " + entry.make + " " + entry.model}
-                            price={entry.price}
-                            imageURL={entry.image}
-                            onClick={this.onClick}
-                        />
-                    );
-                })}
-                <CarDetails
-                    currentCar={this.state.currentCar}
-                />
-            </div>
-        );
+        if (this.state.carsJSON.length === 0) {
+            return <div className={styles.loader}/>;
+        } else {
+            return (
+                <div className={styles.cards}>
+                    <div className={styles.carlist}>
+                        {this.state.carsJSON?.map((entry, index) => {
+                            return (
+                                <ListItemCar
+                                    key={index}
+                                    id={index}
+                                    name={entry.year + " " + entry.make + " " + entry.model}
+                                    price={entry.price}
+                                    imageURL={entry.image}
+                                    onClick={this.onClick}
+                                />
+                            );
+                        })}
+                    </div>
+                    <CarDetails
+                        currentCar={this.state.currentCar}
+                    />
+                </div>
+            );
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import styles from "./ClientInfoContainer.module.scss";
 
 /**
  * A functional component that represents the card containing more detailed information about the car
@@ -12,11 +13,13 @@ export default function CarDetails(props) {
 
     let name = props.currentCar.year + " " + props.currentCar.make + " " + props.currentCar.model;
     return (
-        <div>
-            <img src={props.currentCar.imageURL} alt={"Picture of "+name}/>
-            <h2>{name}</h2>
+        <div className={styles.carDetails}>
+            <div className={styles.detailsHeader}>
+                <img src={props.currentCar.image} alt={"Picture of "+name}/>
+                <h2>{name}</h2>
+            </div>
             <hr/>
-            <p>List Price: {props.currentCar.price}</p><br/>
+            <p>List Price: {props.currentCar.price}</p>
             <p>Predicted Loan: [insert installment information]</p>
         </div>
     );
