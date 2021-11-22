@@ -3,6 +3,9 @@ import ListItemCar from "./ListItemCar";
 import PropTypes from "prop-types";
 import CarDetails from "./CarDetails";
 
+/**
+ * Manages the client's list of recommended cars
+ */
 export default class CarList extends React.Component {
     constructor(props) {
         super(props);
@@ -12,10 +15,16 @@ export default class CarList extends React.Component {
         }
     }
 
+    /**
+     * Once the component loads, fetch the user's recommended cars
+     */
     componentDidMount() {
         this.getCars();
     }
 
+    /**
+     * Send a POST request to the back-end to get this client's cars
+     */
     getCars = () => {
         const requestOptions = {
             method: 'POST',
@@ -28,6 +37,10 @@ export default class CarList extends React.Component {
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
+    /**
+     * When a car in the list is clicked, save that car
+     * @param carId the id of the clicked car
+     */
     onClick = (carId) => {
         this.setState({currentCar: this.state.carsJSON[carId]});
     }

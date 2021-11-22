@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Represents a car button in the list of cars
+ */
 export default function ListItemCar(props) {
     return (
         <button className="car" onClick={() => props.onClick(props.id)}>
