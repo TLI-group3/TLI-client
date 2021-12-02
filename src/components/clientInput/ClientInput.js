@@ -15,11 +15,7 @@ export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputData: {
-                clientIDs: "",
-                generateEmail: false,
-                generateWidget: true,
-            },
+            clientIDs: "",
             success: false,
         }
     }
@@ -29,12 +25,7 @@ export default class ClientInput extends React.Component {
      * @param e triggering event, change in input field
      */
     handleInsertID = (e) => {
-        this.setState(prevState => ({
-            inputData: {
-                ...prevState.inputData,
-                clientIDs: e.target.value,
-            },
-        }));
+        this.setState({clientIDs: e.target.value});
     }
 
     /**
@@ -50,37 +41,9 @@ export default class ClientInput extends React.Component {
         reader.onload = async (e) => {
             const text = (e.target.result);
             const ids = text.split(/\r?\n/);
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    clientIDs: ids.join(" "),
-                },
-            }));
+            this.setState({clientIDs: ids.join(" ")});
         };
         reader.readAsText(e.target.files[0]);
-    }
-
-    /**
-     * Update either the generateEmail or generateWidget states to
-     * reflect checkbox state
-     * @param e triggering event, checkbox changed
-     */
-    handleSelectAction = (e) => {
-        if(e.target.name === "email") {
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    generateEmail: e.target.checked,
-                },
-            }));
-        } else if(e.target.name === "widget") {
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    generateWidget: e.target.checked,
-                },
-            }));
-        }
     }
 
     /**
@@ -100,7 +63,7 @@ export default class ClientInput extends React.Component {
         const requestOptions = {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
-            body: JSON.stringify(this.state.inputData)
+            body: JSON.stringify(this.state.clientIDs)
         };
         fetch('https://cb.caravantage.tech/input',requestOptions)
             // Handle success
@@ -113,13 +76,7 @@ export default class ClientInput extends React.Component {
      * Resets the input fields of the form to default state
      */
     reset = () => {
-        this.setState({
-            inputData: {
-                clientIDs: "",
-                generateEmail: false,
-                generateWidget: true,
-            },
-        });
+        this.setState({clientIDs: ""});
     }
 
     /**
@@ -152,7 +109,7 @@ export default class ClientInput extends React.Component {
                     <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
                     <InputForm
                         launchWidget={this.props.launchWidget}
-                        inputData={this.state.inputData}
+                        clientIDs={this.state.clientIDs}
                         inputRows={inputRows}
                         placeholderText={placeholderText}
                         handleInsertID={this.handleInsertID}
