@@ -28,10 +28,9 @@ export default class CarList extends React.Component {
      */
     getCars = () => {
         const requestOptions = {
-            method: 'POST',
-            body: this.props.clientId
+            method: 'GET',
         };
-        fetch('https://cb.caravantage.tech/cars',requestOptions)
+        fetch('https://cb.caravantage.tech/getCars/?input='+this.props.clientId,requestOptions)
             // Handle success
             .then(response => response.json())  // convert to json
             .then(json => { this.setState({carsJSON: json.cars, currentCar: json.cars[0]}); })
