@@ -10,9 +10,9 @@ import {useNavigate} from "react-router-dom";
  */
 export function InputForm(props) {
     const navigate = useNavigate();
-    const onSubmit = useCallback(() => {
+    const onSubmit = useCallback((e) => {
         if(props.launchWidget) {
-            props.handleSubmit();
+            props.handleSubmit(e);
         } else {
             navigate("/client-info/"+props.clientIDs);
         }

@@ -16,7 +16,7 @@ export default class ClientInput extends React.Component {
         super(props);
         this.state = {
             clientIDs: "",
-            success: false,
+            successMessage: "",
         }
     }
 
@@ -63,13 +63,17 @@ export default class ClientInput extends React.Component {
         const requestOptions = {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
-            body: JSON.stringify(this.state.clientIDs)
+            body: JSON.stringify({clientIDs: this.state.clientIDs})
         };
-        fetch('https://cb.caravantage.tech/input',requestOptions)
-            // Handle success
-            .then(response => response.json())  // convert to json
-            .then(result => this.setState({success: result}))
-            .catch(err => console.log('Request Failed', err)); // Catch errors
+        fetch('https://cb.caravantage.tech/generateCars',requestOptions)
+            .then((response) => {
+                if(!response.ok) {
+                    throw new Error("Something went wrong with the request, Status " + response.status);
+                } else {
+                    this.setState({successMessage: "Success! Widgets have been launched."});
+                }
+            })
+            .catch((error) => {this.setState({successMessage: "Error: " + error.message})});
     }
 
     /**
@@ -77,19 +81,6 @@ export default class ClientInput extends React.Component {
      */
     reset = () => {
         this.setState({clientIDs: ""});
-    }
-
-    /**
-     * Prints a message upon submission of form, reflecting success or failure
-     * @returns {JSX.Element} message
-     */
-    printMessage = () => {
-        // when an error occurs, the response is a json error message, not boolean
-        if (typeof this.state.success != "boolean") {
-            return <p className={styles.successMessage}>Something went wrong</p>;
-        } else if (this.state.success) {
-            return <p className={styles.successMessage}>Success! Widgets have been launched.</p>;
-        }
     }
 
     render() {
@@ -118,7 +109,7 @@ export default class ClientInput extends React.Component {
                         handleSubmit={this.handleSubmit}
                     />
                 </div>
-                {this.printMessage()}
+                <p className={styles.successMessage}>{this.state.successMessage}</p>
             </div>
         );
     }
