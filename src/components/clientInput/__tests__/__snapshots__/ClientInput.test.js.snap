@@ -32,30 +32,6 @@ Object {
                 />
               </label>
             </div>
-            <div
-              class="checkboxes"
-            >
-              <input
-                name="email"
-                type="checkbox"
-              />
-              <label
-                for="email"
-              >
-                Generate email markup
-              </label>
-              <br />
-              <input
-                checked=""
-                name="widget"
-                type="checkbox"
-              />
-              <label
-                for="widget"
-              >
-                Launch targeted widgets
-              </label>
-            </div>
             <input
               class="submitButton"
               type="submit"
@@ -63,6 +39,9 @@ Object {
             />
           </form>
         </div>
+        <p
+          class="successMessage"
+        />
       </div>
     </div>
   </body>,
@@ -94,30 +73,6 @@ Object {
               />
             </label>
           </div>
-          <div
-            class="checkboxes"
-          >
-            <input
-              name="email"
-              type="checkbox"
-            />
-            <label
-              for="email"
-            >
-              Generate email markup
-            </label>
-            <br />
-            <input
-              checked=""
-              name="widget"
-              type="checkbox"
-            />
-            <label
-              for="widget"
-            >
-              Launch targeted widgets
-            </label>
-          </div>
           <input
             class="submitButton"
             type="submit"
@@ -125,6 +80,9 @@ Object {
           />
         </form>
       </div>
+      <p
+        class="successMessage"
+      />
     </div>
   </div>,
   "debug": [Function],
@@ -219,6 +177,9 @@ Object {
             />
           </form>
         </div>
+        <p
+          class="successMessage"
+        />
       </div>
     </div>
   </body>,
@@ -256,6 +217,9 @@ Object {
           />
         </form>
       </div>
+      <p
+        class="successMessage"
+      />
     </div>
   </div>,
   "debug": [Function],
