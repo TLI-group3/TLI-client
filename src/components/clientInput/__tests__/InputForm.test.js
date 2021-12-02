@@ -47,15 +47,6 @@ describe('InputForm', () => {
         expect(result).toStrictEqual(['some input']);
     });
 
-    test('registers a change in the checkboxes', () => {
-        let result = [];
-        const handleSubmit = jest.fn().mockImplementation((e) => e.preventDefault());
-        const form = renderForm(result, handleSubmit);
-        const checkbox = form.getByRole('checkbox', {checked: false});
-        userEvent.click(checkbox);
-        expect(result).toStrictEqual(['on']);
-    });
-
     test('correctly reads an uploaded file', async () => {
         const clientInput = renderClientInput();
         const FileInput = clientInput.getByLabelText('Or, upload as a .txt file:');

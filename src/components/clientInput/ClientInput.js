@@ -15,12 +15,8 @@ export default class ClientInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputData: {
-                clientIDs: "",
-                generateEmail: false,
-                generateWidget: true,
-            },
-            success: false,
+            clientIDs: "",
+            successMessage: "",
         }
     }
 
@@ -29,12 +25,7 @@ export default class ClientInput extends React.Component {
      * @param e triggering event, change in input field
      */
     handleInsertID = (e) => {
-        this.setState(prevState => ({
-            inputData: {
-                ...prevState.inputData,
-                clientIDs: e.target.value,
-            },
-        }));
+        this.setState({clientIDs: e.target.value});
     }
 
     /**
@@ -50,37 +41,9 @@ export default class ClientInput extends React.Component {
         reader.onload = async (e) => {
             const text = (e.target.result);
             const ids = text.split(/\r?\n/);
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    clientIDs: ids.join(" "),
-                },
-            }));
+            this.setState({clientIDs: ids.join(" ")});
         };
         reader.readAsText(e.target.files[0]);
-    }
-
-    /**
-     * Update either the generateEmail or generateWidget states to
-     * reflect checkbox state
-     * @param e triggering event, checkbox changed
-     */
-    handleSelectAction = (e) => {
-        if(e.target.name === "email") {
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    generateEmail: e.target.checked,
-                },
-            }));
-        } else if(e.target.name === "widget") {
-            this.setState(prevState => ({
-                inputData: {
-                    ...prevState.inputData,
-                    generateWidget: e.target.checked,
-                },
-            }));
-        }
     }
 
     /**
@@ -100,39 +63,24 @@ export default class ClientInput extends React.Component {
         const requestOptions = {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
-            body: JSON.stringify(this.state.inputData)
+            body: JSON.stringify({clientIDs: this.state.clientIDs})
         };
-        fetch('https://cb.caravantage.tech/input',requestOptions)
-            // Handle success
-            .then(response => response.json())  // convert to json
-            .then(result => this.setState({success: result}))
-            .catch(err => console.log('Request Failed', err)); // Catch errors
+        fetch('https://cb.caravantage.tech/generateCars',requestOptions)
+            .then((response) => {
+                if(!response.ok) {
+                    throw new Error("Something went wrong with the request, Status " + response.status);
+                } else {
+                    this.setState({successMessage: "Success! Widgets have been launched."});
+                }
+            })
+            .catch((error) => {this.setState({successMessage: "Error: " + error.message})});
     }
 
     /**
      * Resets the input fields of the form to default state
      */
     reset = () => {
-        this.setState({
-            inputData: {
-                clientIDs: "",
-                generateEmail: false,
-                generateWidget: true,
-            },
-        });
-    }
-
-    /**
-     * Prints a message upon submission of form, reflecting success or failure
-     * @returns {JSX.Element} message
-     */
-    printMessage = () => {
-        // when an error occurs, the response is a json error message, not boolean
-        if (typeof this.state.success != "boolean") {
-            return <p className={styles.successMessage}>Something went wrong</p>;
-        } else if (this.state.success) {
-            return <p className={styles.successMessage}>Success! Widgets have been launched.</p>;
-        }
+        this.setState({clientIDs: ""});
     }
 
     render() {
@@ -152,7 +100,7 @@ export default class ClientInput extends React.Component {
                     <h1>Insert Client ID{this.props.launchWidget && "s"}</h1>
                     <InputForm
                         launchWidget={this.props.launchWidget}
-                        inputData={this.state.inputData}
+                        clientIDs={this.state.clientIDs}
                         inputRows={inputRows}
                         placeholderText={placeholderText}
                         handleInsertID={this.handleInsertID}
@@ -161,7 +109,7 @@ export default class ClientInput extends React.Component {
                         handleSubmit={this.handleSubmit}
                     />
                 </div>
-                {this.printMessage()}
+                <p className={styles.successMessage}>{this.state.successMessage}</p>
             </div>
         );
     }

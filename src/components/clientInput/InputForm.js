@@ -1,5 +1,4 @@
 import {InsertID} from "./InsertID";
-import {LaunchActions} from "./LaunchActions";
 import styles from "./ClientInput.module.scss";
 import React, {useCallback} from "react";
 import PropTypes from "prop-types";
@@ -11,11 +10,11 @@ import {useNavigate} from "react-router-dom";
  */
 export function InputForm(props) {
     const navigate = useNavigate();
-    const onSubmit = useCallback(() => {
+    const onSubmit = useCallback((e) => {
         if(props.launchWidget) {
-            props.handleSubmit();
+            props.handleSubmit(e);
         } else {
-            navigate("/client-info/"+props.inputData.clientIDs);
+            navigate("/client-info/"+props.clientIDs);
         }
     }, [props, navigate]);
 
@@ -23,18 +22,11 @@ export function InputForm(props) {
         <form onSubmit={onSubmit}>
             <InsertID
                 inputRows={props.inputRows}
-                value={props.inputData.clientIDs}
+                value={props.clientIDs}
                 placeholderText={props.placeholderText}
                 handleInsertID={props.handleInsertID}
                 readFile={props.readFile}
             />
-            {props.launchWidget &&
-                <LaunchActions
-                    generateEmail={props.inputData.generateEmail}
-                    generateWidget={props.inputData.generateWidget}
-                    onChange={props.handleSelectAction}
-                />
-            }
             <input className={styles.submitButton} type="submit" value="GO"/>
         </form>
     );
@@ -42,11 +34,10 @@ export function InputForm(props) {
 
 InputForm.propTypes = {
     launchWidget: PropTypes.bool,
-    inputData: PropTypes.object,
+    clientIDs: PropTypes.string,
     inputRows: PropTypes.string,
     placeholderText: PropTypes.string,
     handleInsertID: PropTypes.func,
     readFile: PropTypes.func,
-    handleSelectAction: PropTypes.func,
     handleSubmit: PropTypes.func,
 }
