@@ -1,24 +1,14 @@
 import React from 'react';
-import CarList from "./CarList";
-import CarDetails from "./CarDetails";
-import styles from './ClientInfoContainer.module.scss';
 import {Outlet} from "react-router-dom";
+import styles from "./ClientInfoContainer.module.scss"
 
-export default class ClientInfoContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            clientName: "",
-            carsJSON: {},
-            currentCarID: "",
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <Outlet />
-            </div>
-        );
-    }
+/**
+ * A container holding the Client Information Page
+ */
+export default function ClientInfoContainer() {
+    return (
+        <div className={styles.clientInfo}>
+            <Outlet />
+        </div>
+    );
 }

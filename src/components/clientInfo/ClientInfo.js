@@ -1,20 +1,17 @@
 import React from 'react';
 import CarList from "./CarList";
-import CarDetails from "./CarDetails";
 import {useParams} from "react-router-dom";
 
-export default function ClientInfo(props) {
-    let params = useParams();
-    const clientName = "Last Name, First Name";
-    const currentCarID = "10001";
+/**
+ * A functional component that holds the client-specific information on the Client Info Page
+ */
+export default function ClientInfo() {
+    let params = useParams(); // parameters in the URL, currently only clientId
 
     return (
         <React.Fragment>
-            {clientName}
-            <CarList />
-            <CarDetails
-                currentCarID={currentCarID}
-            />
+            <h1>Client Number: {params.clientId}</h1>
+            <CarList clientId={params.clientId} />
         </React.Fragment>
     );
 }

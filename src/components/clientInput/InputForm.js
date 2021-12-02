@@ -1,7 +1,7 @@
 import {InsertID} from "./InsertID";
 import {LaunchActions} from "./LaunchActions";
 import styles from "./ClientInput.module.scss";
-import React from "react";
+import React, {useCallback} from "react";
 import PropTypes from "prop-types";
 import {useNavigate} from "react-router-dom";
 
@@ -11,9 +11,16 @@ import {useNavigate} from "react-router-dom";
  */
 export function InputForm(props) {
     const navigate = useNavigate();
+    const onSubmit = useCallback(() => {
+        if(props.launchWidget) {
+            props.handleSubmit();
+        } else {
+            navigate("/client-info/"+props.inputData.clientIDs);
+        }
+    }, [props, navigate]);
 
     return (
-        <form onSubmit={props.launchWidget ? props.handleSubmit : navigate("/client-info/"+props.inputData.clientIDs)}>
+        <form onSubmit={onSubmit}>
             <InsertID
                 inputRows={props.inputRows}
                 value={props.inputData.clientIDs}
