@@ -10,7 +10,7 @@ export default function ListItemCar(props) {
         <button className={styles.car} onClick={() => props.onClick(props.id)}>
             <img src={props.imageURL} alt={"Picture of "+props.name} />
             <h2>{props.name}</h2>
-            <p>Price: {props.price}</p>
+            <p>Price: ${props.price.toLocaleString()}</p>
         </button>
     );
 }

@@ -28,13 +28,26 @@ export default class CarList extends React.Component {
      */
     getCars = () => {
         const requestOptions = {
-            method: 'POST',
-            body: this.props.clientId
+            method: 'GET',
         };
-        fetch('https://cb.caravantage.tech/cars',requestOptions)
+        fetch('https://cb.caravantage.tech/getCars/?input='+this.props.clientId,requestOptions)
             // Handle success
-            .then(response => response.json())  // convert to json
-            .then(json => { this.setState({carsJSON: json.cars, currentCar: json.cars[0]}); })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("HTTP request failed, status="+response.status);
+                } else {
+                    return response.json();
+                }
+            })  // convert to json
+            .then(json => {
+                if (json.cars.length !== 0) {
+                    this.setState({carsJSON: json.cars, currentCar: json.cars[0]});
+                } else {
+                    this.setState({
+                        carsJSON: ["Error", "Something went wrong. Received empty car list. Please check that input ID is valid."]
+                    });
+                }
+            })
             .catch(err => console.log('Request Failed', err)); // Catch errors
     }
 
@@ -49,6 +62,8 @@ export default class CarList extends React.Component {
     render() {
         if (this.state.carsJSON.length === 0) {
             return <div className={styles.loader}/>;
+        } else if (this.state.carsJSON[0] === "Error") {
+            return <p>{this.state.carsJSON[1]}</p>
         } else {
             return (
                 <div className={styles.cards}>

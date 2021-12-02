@@ -19,8 +19,14 @@ export default function CarDetails(props) {
                 <h2>{name}</h2>
             </div>
             <hr/>
-            <p>List Price: {props.currentCar.price}</p>
-            <p>Predicted Loan: [insert installment information]</p>
+            <p><u>List Price:</u> ${props.currentCar.price.toLocaleString()}</p>
+            <p><u>Predicted Loan Details:</u></p>
+            <ul>
+                <li>Loan Amount (without interest): ${props.currentCar.loan.loanAmount.toLocaleString()}</li>
+                <li>Interest Rate: {props.currentCar.loan.interestRate}%</li>
+                <li>Loan Term: {props.currentCar.loan.loanTerm} months</li>
+                <li>Total Loan Sum: ${props.currentCar.loan.loanSum.toLocaleString()}</li>
+            </ul>
         </div>
     );
 }
